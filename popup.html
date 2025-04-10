@@ -4,20 +4,106 @@
   <title>Website Time Tracker</title>
   <style>
     body {
-      width: 300px;
-      padding: 10px;
+      min-width: 300px;
+      max-width: 400px;
+      padding: 15px;
+      margin: 0;
       font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+    }
+    h2, h3 {
+      margin: 0 0 10px;
+      color: #2c3e50;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .section {
+      background: white;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .site-list, .focus-list {
+      max-height: 200px;
+      overflow-y: auto;
+      margin: 0;
+      padding: 0;
     }
     .site-entry {
-      margin: 5px 0;
-      padding: 5px;
-      border-bottom: 1px solid #ddd;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .site-entry:last-child {
+      border-bottom: none;
+    }
+    .focus-form {
+      display: grid;
+      grid-template-columns: 1fr 80px 60px;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    input {
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    input[type="number"] {
+      width: 100%;
+    }
+    button {
+      padding: 8px;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    button:hover {
+      background: #2980b9;
+    }
+    .remove-btn {
+      background: #e74c3c;
+      padding: 4px 8px;
+      font-size: 12px;
+    }
+    .remove-btn:hover {
+      background: #c0392b;
+    }
+    @media (max-width: 320px) {
+      body {
+        padding: 10px;
+      }
+      .focus-form {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
-  <h2>Today's Website Time</h2>
-  <div id="timeList"></div>
+  <div class="container">
+    <div class="section">
+      <h2>Today's Website Time</h2>
+      <div class="site-list" id="timeList"></div>
+    </div>
+    <div class="section">
+      <h3>Focus Mode</h3>
+      <div class="focus-form">
+        <input id="focusSite" placeholder="e.g., facebook.com">
+        <input id="focusLimit" type="number" min="1" placeholder="Min">
+        <button id="addFocus">Add</button>
+      </div>
+      <div class="focus-list" id="focusList"></div>
+    </div>
+  </div>
   <script src="popup.js"></script>
 </body>
 </html>
